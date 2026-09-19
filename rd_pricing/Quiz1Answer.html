@@ -1,0 +1,359 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Quiz 1 Answer
+{% endblock %}
+
+{% block content %}
+
+<div class="card card-body bg-light instructions">
+    <div class="big">
+
+        <div class="question-box">
+            {{ question }}
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- SHOW ALL FOUR ANSWER OPTIONS -->
+        <!-- ===================================================== -->
+
+        <div class="answer-options">
+
+            <!-- 20% -->
+            <div class="
+                answer-option
+                {% if correct_answer == '20%' %}correct-option{% endif %}
+                {% if selected_answer == '20%' and correct_answer != '20%' %}incorrect-option{% endif %}
+            ">
+                <span class="radio-circle
+                    {% if selected_answer == '20%' %}selected-radio{% endif %}
+                ">
+                    {% if selected_answer == '20%' %}
+                        <span class="radio-dot"></span>
+                    {% endif %}
+                </span>
+
+                <span class="option-text">
+                    20%
+                </span>
+
+                {% if selected_answer == '20%' %}
+                    <span class="answer-label">
+                        Your answer
+                    </span>
+                {% endif %}
+
+                {% if correct_answer == '20%' %}
+                    <span class="correct-label">
+                        Correct answer
+                    </span>
+                {% endif %}
+            </div>
+
+
+            <!-- 50% -->
+            <div class="
+                answer-option
+                {% if correct_answer == '50%' %}correct-option{% endif %}
+                {% if selected_answer == '50%' and correct_answer != '50%' %}incorrect-option{% endif %}
+            ">
+                <span class="radio-circle
+                    {% if selected_answer == '50%' %}selected-radio{% endif %}
+                ">
+                    {% if selected_answer == '50%' %}
+                        <span class="radio-dot"></span>
+                    {% endif %}
+                </span>
+
+                <span class="option-text">
+                    50%
+                </span>
+
+                {% if selected_answer == '50%' %}
+                    <span class="answer-label">
+                        Your answer
+                    </span>
+                {% endif %}
+
+                {% if correct_answer == '50%' %}
+                    <span class="correct-label">
+                        Correct answer
+                    </span>
+                {% endif %}
+            </div>
+
+
+            <!-- 80% -->
+            <div class="
+                answer-option
+                {% if correct_answer == '80%' %}correct-option{% endif %}
+                {% if selected_answer == '80%' and correct_answer != '80%' %}incorrect-option{% endif %}
+            ">
+                <span class="radio-circle
+                    {% if selected_answer == '80%' %}selected-radio{% endif %}
+                ">
+                    {% if selected_answer == '80%' %}
+                        <span class="radio-dot"></span>
+                    {% endif %}
+                </span>
+
+                <span class="option-text">
+                    80%
+                </span>
+
+                {% if selected_answer == '80%' %}
+                    <span class="answer-label">
+                        Your answer
+                    </span>
+                {% endif %}
+
+                {% if correct_answer == '80%' %}
+                    <span class="correct-label">
+                        Correct answer
+                    </span>
+                {% endif %}
+            </div>
+
+
+            <!-- 100% -->
+            <div class="
+                answer-option
+                {% if correct_answer == '100%' %}correct-option{% endif %}
+                {% if selected_answer == '100%' and correct_answer != '100%' %}incorrect-option{% endif %}
+            ">
+                <span class="radio-circle
+                    {% if selected_answer == '100%' %}selected-radio{% endif %}
+                ">
+                    {% if selected_answer == '100%' %}
+                        <span class="radio-dot"></span>
+                    {% endif %}
+                </span>
+
+                <span class="option-text">
+                    100%
+                </span>
+
+                {% if selected_answer == '100%' %}
+                    <span class="answer-label">
+                        Your answer
+                    </span>
+                {% endif %}
+
+                {% if correct_answer == '100%' %}
+                    <span class="correct-label">
+                        Correct answer
+                    </span>
+                {% endif %}
+            </div>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- CORRECT / INCORRECT MESSAGE -->
+        <!-- ===================================================== -->
+
+        {% if is_correct %}
+
+            <div class="correct-box">
+                <h4>Your answer is correct.</h4>
+            </div>
+
+        {% else %}
+
+            <div class="incorrect-box">
+                <h4>Your answer is not correct.</h4>
+
+                <p>
+                    The correct answer is
+                    <strong>{{ correct_answer }}</strong>
+                </p>
+            </div>
+
+        {% endif %}
+
+
+        <!-- ===================================================== -->
+        <!-- EXPLANATION -->
+        <!-- ===================================================== -->
+
+        <div class="explanation-box">
+            {{ explanation }}
+        </div>
+
+
+        {% next_button %}
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block styles %}
+
+<style>
+
+    .big {
+        font-size: large;
+    }
+
+    .big p {
+        line-height: 1.5;
+    }
+
+
+    /* Question */
+
+    .question-box {
+        padding: 18px;
+        margin: 10px 0 20px 0;
+        border: 1px solid #ccc;
+        background-color: white;
+        font-weight: 600;
+    }
+
+
+    /* Answer choices */
+
+    .answer-options {
+        margin: 20px 0 30px 0;
+    }
+
+    .answer-option {
+        display: flex;
+        align-items: center;
+        min-height: 58px;
+        padding: 10px 15px;
+        margin: 8px 0;
+
+        /* No large colored rectangles */
+        border: none;
+        background-color: transparent;
+    }
+
+    .option-text {
+        font-size: 1.15em;
+    }
+
+
+    /* Radio buttons */
+
+    .radio-circle {
+        width: 24px;
+        height: 24px;
+        margin-right: 15px;
+
+        border: 2px solid #aaa;
+        border-radius: 50%;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+    }
+
+    .selected-radio {
+        border-color: #0d6efd;
+    }
+
+    .radio-dot {
+        width: 12px;
+        height: 12px;
+        background-color: #0d6efd;
+        border-radius: 50%;
+    }
+
+
+    /* Remove colored backgrounds from whole options */
+
+    .correct-option {
+        background-color: transparent;
+        border: none;
+    }
+
+    .incorrect-option {
+        background-color: transparent;
+        border: none;
+    }
+
+
+    /* Correct-answer label */
+
+    .correct-label {
+        margin-left: auto;
+        padding: 4px 9px;
+
+        color: #157347;
+        font-size: 0.85em;
+        font-weight: 700;
+
+        background-color: #d1e7dd;
+        border-radius: 4px;
+    }
+
+
+    /* Your-answer label */
+
+    .answer-label {
+        margin-left: auto;
+        padding: 4px 9px;
+
+        color: #555;
+        font-size: 0.85em;
+        font-weight: 700;
+
+        background-color: #eeeeee;
+        border-radius: 4px;
+    }
+
+    .incorrect-option .answer-label {
+        color: #555;
+        background-color: #eeeeee;
+    }
+
+
+    /* Correct / incorrect feedback */
+
+    .correct-box {
+        padding: 15px;
+        margin: 20px 0;
+        border-left: 5px solid #198754;
+        background-color: #eaf7ef;
+    }
+
+    .correct-box h4 {
+        margin-bottom: 0;
+    }
+
+    .incorrect-box {
+        padding: 15px;
+        margin: 20px 0;
+        border-left: 5px solid #b02a37;
+        background-color: #fbeaec;
+    }
+
+    .incorrect-box h4 {
+        margin-bottom: 10px;
+    }
+
+    .incorrect-box p:last-child {
+        margin-bottom: 0;
+    }
+
+
+    /* Explanation - GREEN instead of BLUE */
+
+    .explanation-box {
+        padding: 15px;
+        margin: 20px 0;
+        border-left: 5px solid #198754;
+        background-color: #eaf7ef;
+    }
+
+</style>
+
+{% endblock %}

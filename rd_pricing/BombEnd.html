@@ -1,0 +1,35 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    End of Part 3
+{% endblock %}
+
+{% block content %}
+
+<div class="end-page">
+
+    <p>
+        You have completed Part 3.
+    </p>
+
+    <p>
+       On the next page, you will be asked to answer demographic questions.
+    </p>
+
+    <button class="btn btn-primary">
+        Continue
+    </button>
+
+</div>
+
+{% endblock %}
+
+{% block styles %}
+<style>
+    .end-page {
+        font-size: large;
+        line-height: 1.55;
+    }
+</style>
+{% endblock %}

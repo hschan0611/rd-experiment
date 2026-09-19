@@ -1,0 +1,479 @@
+{% block title %}
+    Part 1 - Price Choices and Earnings Tables
+{% endblock %}
+
+{% block content %}
+
+<div class="card card-body bg-light instructions">
+    <div class="big">
+
+        <p>
+            A different earnings table applies depending on your investment decision
+            and your counterpart's investment decision.
+        </p>
+
+        <p>There are four possible investment profiles:</p>
+
+        <ul>
+            <li>
+                Both you and your counterpart invest.
+            </li>
+            <li>
+                Neither you nor your counterpart invests.
+            </li>
+            <li>
+                You invest, but your counterpart does not invest.
+            </li>
+            <li>
+                You do not invest, but your counterpart invests.
+            </li>
+        </ul>
+
+        <p>
+            After both investment decisions have been made, your price-decision
+            screen will display the earnings table that applies to you. The same
+            earnings table will remain in effect during all pricing rounds of the
+            current match.
+        </p>
+
+        <p>
+            If only one producer invests, you and your counterpart will see different
+            earnings tables because the two producers have different production costs
+            and investment costs.
+        </p>
+
+        <hr>
+
+        <h3>How to Read the Earnings Tables</h3>
+
+        <p>
+            You always read an earnings table from your own point of view.
+        </p>
+
+        <ul>
+            <li>
+                Your price determines which
+                <strong class="own-color">row</strong> is used.
+            </li>
+            <li>
+                Your counterpart's price determines which
+                <strong class="other-color">column</strong> is used.
+            </li>
+            <li>
+                The number at the intersection of the selected row and column is
+                <strong>your earnings for that pricing round</strong>.
+            </li>
+        </ul>
+
+        <p>
+            You and your counterpart can each choose from eight prices, so there are
+            64 possible price combinations in each earnings table.
+        </p>
+
+        <h4>Example: Both Producers Invest</h4>
+
+        <p>
+            The following example uses the earnings table that applies when both
+            you and your counterpart invest. Suppose that:
+        </p>
+
+        <ul>
+            <li>You choose a price of 15.</li>
+            <li>Your counterpart chooses a price of 16.</li>
+        </ul>
+
+        <div class="payoff-table-container">
+            <div class="your-price-label own-color">
+                Your Price<br>Choice
+            </div>
+
+            <div class="table-wrapper">
+                <div class="counterpart-price-label other-color">
+                    Counterpart's Price Choice
+                </div>
+
+                <table class="payoff-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            {% for p in p11_prices %}
+                                <th class="
+                                    {% if p == 16 %}
+                                        selected-column-header
+                                    {% endif %}
+                                ">
+                                    {{ p }}
+                                </th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for my_p, row in p11_rows %}
+                            <tr>
+                                <th class="
+                                    {% if my_p == 15 %}
+                                        selected-row-header
+                                    {% endif %}
+                                ">
+                                    {{ my_p }}
+                                </th>
+
+                                {% for cell in row %}
+                                    <td class="
+                                        {% if my_p == 15 %}
+                                            selected-row
+                                        {% endif %}
+
+                                        {% if forloop.counter == 8 %}
+                                            selected-column
+                                        {% endif %}
+
+                                        {% if my_p == 15 and forloop.counter == 8 %}
+                                            selected-cell
+                                        {% endif %}
+                                    ">
+                                        {{ cell }}
+                                    </td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="example-explanation">
+            <p>
+                Your price of <strong>15</strong> selects the highlighted
+                <span class="own-color"><strong>row</strong></span>.
+                Your counterpart's price of <strong>16</strong> selects the
+                highlighted
+                <span class="other-color"><strong>column</strong></span>.
+            </p>
+
+            <p>
+                The number at the intersection of this row and column is
+                <strong>120.00 points</strong>. Therefore, you earn
+                <strong>120.00 points</strong> in this pricing round.
+            </p>
+        </div>
+
+        <hr>
+
+        <h3>All Earnings Tables</h3>
+
+        <!-- Both invest: (1,1) -->
+        <h4>Both Producers Invest</h4>
+
+        <p>
+            This table applies when both you and your counterpart invest.
+        </p>
+
+        <div class="payoff-table-container">
+            <div class="your-price-label">
+                Your Price<br>Choice
+            </div>
+
+            <div class="table-wrapper">
+                <div class="counterpart-price-label">
+                    Counterpart's Price Choice
+                </div>
+
+                <table class="payoff-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            {% for p in p11_prices %}
+                                <th>{{ p }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for my_p, row in p11_rows %}
+                            <tr>
+                                <th>{{ my_p }}</th>
+
+                                {% for cell in row %}
+                                    <td>{{ cell }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Neither invests: (0,0) -->
+        <h4>Neither Producer Invests</h4>
+
+        <p>
+            This table applies when neither you nor your counterpart invests.
+        </p>
+
+        <div class="payoff-table-container">
+            <div class="your-price-label">
+                Your Price<br>Choice
+            </div>
+
+            <div class="table-wrapper">
+                <div class="counterpart-price-label">
+                    Counterpart's Price Choice
+                </div>
+
+                <table class="payoff-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            {% for p in p00_prices %}
+                                <th>{{ p }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for my_p, row in p00_rows %}
+                            <tr>
+                                <th>{{ my_p }}</th>
+
+                                {% for cell in row %}
+                                    <td>{{ cell }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- You invest, counterpart does not: (1,0) -->
+        <h4>You Invest and Your Counterpart Does Not</h4>
+
+        <p>
+            This table applies when you invest but your counterpart does not invest.
+        </p>
+
+        <div class="payoff-table-container">
+            <div class="your-price-label">
+                Your Price<br>Choice
+            </div>
+
+            <div class="table-wrapper">
+                <div class="counterpart-price-label">
+                    Counterpart's Price Choice
+                </div>
+
+                <table class="payoff-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            {% for p in pasym_prices %}
+                                <th>{{ p }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for my_p, row in p10_rows %}
+                            <tr>
+                                <th>{{ my_p }}</th>
+
+                                {% for cell in row %}
+                                    <td>{{ cell }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- You do not invest, counterpart invests: (0,1) -->
+        <h4>You Do Not Invest and Your Counterpart Invests</h4>
+
+        <p>
+            This table applies when you do not invest but your counterpart invests.
+        </p>
+
+        <div class="payoff-table-container">
+            <div class="your-price-label">
+                Your Price<br>Choice
+            </div>
+
+            <div class="table-wrapper">
+                <div class="counterpart-price-label">
+                    Counterpart's Price Choice
+                </div>
+
+                <table class="payoff-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            {% for p in pasym_prices %}
+                                <th>{{ p }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        {% for my_p, row in p01_rows %}
+                            <tr>
+                                <th>{{ my_p }}</th>
+
+                                {% for cell in row %}
+                                    <td>{{ cell }}</td>
+                                {% endfor %}
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+    {% next_button %}
+</div>
+
+{% endblock %}
+
+
+{% block styles %}
+<style type="text/css">
+
+    .big {
+        font-size: large;
+    }
+
+    .big p,
+    .big li {
+        line-height: 1.5;
+    }
+
+    .own-color {
+        color: #168c3a;
+    }
+
+    .other-color {
+        color: #c62828;
+    }
+
+    .payoff-table-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px 0 30px 0;
+        overflow-x: auto;
+    }
+
+    .your-price-label {
+        min-width: 110px;
+        font-weight: 700;
+        text-align: right;
+        line-height: 1.2;
+    }
+
+    .table-wrapper {
+        min-width: max-content;
+    }
+
+    .counterpart-price-label {
+        margin-bottom: 8px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .payoff-table {
+        border: 2px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        background-color: white;
+    }
+
+    .payoff-table th,
+    .payoff-table td {
+        min-width: 68px;
+        padding: 7px 10px;
+        border: 1px solid #999;
+        white-space: nowrap;
+    }
+
+    .payoff-table th {
+        font-weight: 700;
+        background-color: #f2f2f2;
+    }
+
+    .selected-row {
+        background-color: #edf9f0;
+    }
+
+    .selected-column {
+        background-color: #fff0f0;
+    }
+
+    .selected-row-header {
+        color: #0b6b2b;
+        background-color: #c8f3d2 !important;
+        border: 3px solid #168c3a !important;
+    }
+
+    .selected-column-header {
+        color: #a00000;
+        background-color: #ffd2d2 !important;
+        border: 3px solid #c62828 !important;
+    }
+
+    .selected-cell {
+        background-color: #fff3a6 !important;
+        border: 4px solid #1f5fae !important;
+        font-size: 1.05em;
+        font-weight: 800;
+    }
+
+    .example-explanation {
+        padding: 15px 18px;
+        margin: 20px 0 30px 0;
+        border-left: 5px solid #1f5fae;
+        background-color: #eef5ff;
+    }
+
+    .example-explanation p:last-child {
+        margin-bottom: 0;
+    }
+
+    .table-note {
+        margin-top: 20px;
+        font-size: 0.9em;
+        font-style: italic;
+    }
+
+    hr {
+        margin: 30px 0;
+    }
+
+    @media (max-width: 900px) {
+        .payoff-table-container {
+            display: block;
+        }
+
+        .your-price-label {
+            margin-bottom: 8px;
+            text-align: left;
+        }
+    }
+
+</style>
+{% endblock %}

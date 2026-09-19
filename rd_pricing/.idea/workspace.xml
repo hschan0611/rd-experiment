@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a5e80e20-b09a-4dba-8c37-717df2dcbf1e" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../prisoner/BRETBox.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/BRETStop.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/BeliefInstructions1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/BeliefInstructions2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/BeliefQuiz1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/BeliefQuiz1Result.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/BombIntro.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/BombResults.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/BombStart.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/CRTIntro.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/CRT_Q1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/CRT_Q1_Result.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/CRT_Q2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/CRT_Q2_Result.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/CRT_Q3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/CRT_Q3_Result.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/Decision.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/DecisionGame1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/DecisionGame2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/Demographics.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/End.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/EndRound.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/EndRoundGame1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/EndRoundGame2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/EndofBeliefQuiz.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/Game1Intro.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/Game2Intro.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/Instructions_1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/Instructions_2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/Instructions_3.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/Instructions_4.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/Introduction.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/Results.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/ResultsGame1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/ResultsGame2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/ResultsWaitPageGame1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/ResultsWaitPageGame2.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/WaitbeforeGame1.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/_builtin/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/belief_elicitation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/instructions.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/models.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/pages.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../prisoner/tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/../settings.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 3
+}]]></component>
+  <component name="ProjectId" id="3Bfw8u3UnTEIUuUfV53JeJENnYC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a5e80e20-b09a-4dba-8c37-717df2dcbf1e" name="Changes" comment="" />
+      <created>1774893277720</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1774893277720</updated>
+    </task>
+    <servers />
+  </component>
+</project>

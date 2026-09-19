@@ -1,0 +1,70 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Instructions for Part 3
+{% endblock %}
+
+{% block content %}
+
+<div class="instructions-box">
+
+    <p>
+        In Part 3, you will see {{ number_of_boxes }} boxes.
+    </p>
+
+    <p>
+        Exactly one of these boxes contains a bomb. The location of the bomb
+        has been randomly determined by the computer. You do not know which
+        box contains the bomb.
+    </p>
+
+    <p>
+        After you start the task, boxes will be collected one at a time.
+        You can stop the collection at any time by pressing the
+        <strong>STOP</strong> button.
+    </p>
+
+    <p>
+        Each collected box is worth
+        <strong>${{ dollars_per_box|to2 }}</strong>.
+    </p>
+
+    <p>
+            If the bomb is among the boxes you collect, you will receive
+            <strong>$0.00</strong> from this task.
+    </p>
+
+    <p>
+            If the bomb is not among the boxes you collect, you will receive
+            the value of all collected boxes.
+    </p>
+
+    <p>
+        The location of the bomb and your payment from this task will be
+        shown on the final page.
+    </p>
+
+    <button class="btn btn-primary">
+        Continue
+    </button>
+
+</div>
+
+{% endblock %}
+
+{% block styles %}
+<style>
+    .instructions-box {
+        font-size: large;
+        line-height: 1.55;
+    }
+
+    .warning-box {
+        margin: 25px 0;
+        padding: 18px;
+        border-left: 5px solid #dc3545;
+        background-color: #fff1f2;
+    }
+</style>
+{% endblock %}

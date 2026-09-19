@@ -1,0 +1,240 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+   Instructions for Part 2
+{% endblock %}
+
+{% block content %}
+
+<div class="svo-page">
+
+    <p>
+        In Part 2, you will be randomly paired with another
+        person, whom we will refer to as the
+        <strong>other person</strong>.
+    </p>
+
+    <p>
+        You will not know who the other person is, and the other person will
+        not be informed about your identity.
+    </p>
+
+    <p>
+        You will make a series of decisions about allocating points between
+        yourself and the other person.
+    </p>
+
+    <p>
+        For each question, select the allocation that you prefer most by
+        selecting one button in the middle row.
+    </p>
+
+    <p>
+        You may select only one allocation for each question. There are no
+        right or wrong answers. These choices concern your personal
+        preferences.
+    </p>
+
+     <p>
+        After you have made all your choices, one of the allocation choices will be randomly selected by the software.
+        For this choice, the software will randomly assign one person from your group (you or the other)
+        the role of <strong>Receiver</strong> and the other the role of the <strong>Sender</strong>.
+        The allocation choice made by the Sender will be enforced.
+        This allocation will be paid in cash to both the Sender and the Receiver.
+    </p>
+
+    <p>
+        Points will be converted into dollars at a rate of 1 point = $0.05.
+    </p>
+
+    <hr>
+
+    <h4>Example</h4>
+
+    <p>
+        In the example below, a person chose the allocation that gives
+        <strong>50 points to herself</strong> and
+        <strong>40 points to the other person</strong>.
+    </p>
+
+    <p>
+        In dollar terms, this allocation gives
+        <strong>50 × $0.05 = $2.50</strong>
+        to the person making the choice and
+        <strong>40 × $0.05 = $2.00</strong>
+        to the other person.
+    </p>
+
+    <div class="allocation-wrapper">
+        <table class="allocation-table">
+            <tr>
+                <th>You Receive</th>
+                <td>30</td>
+                <td>35</td>
+                <td>40</td>
+                <td>45</td>
+                <td>50</td>
+                <td>55</td>
+                <td>60</td>
+                <td>65</td>
+                <td>70</td>
+            </tr>
+
+            <tr class="choice-row">
+                <th></th>
+                <td><input type="radio" disabled></td>
+                <td><input type="radio" disabled></td>
+                <td><input type="radio" disabled></td>
+                <td><input type="radio" disabled></td>
+                <td><input type="radio" checked disabled></td>
+                <td><input type="radio" disabled></td>
+                <td><input type="radio" disabled></td>
+                <td><input type="radio" disabled></td>
+                <td><input type="radio" disabled></td>
+            </tr>
+
+            <tr>
+                <th>Other Receives</th>
+                <td>80</td>
+                <td>70</td>
+                <td>60</td>
+                <td>50</td>
+                <td>40</td>
+                <td>30</td>
+                <td>20</td>
+                <td>10</td>
+                <td>0</td>
+            </tr>
+        </table>
+    </div>
+
+    <hr>
+
+    <h3>Your Decisions</h3>
+
+    {% for question in questions %}
+
+        <div class="question-box">
+
+            <h4>
+                Question {{ question.number }}
+            </h4>
+
+            <p>
+                Select the allocation that you prefer most.
+            </p>
+
+            <div class="allocation-wrapper">
+                <table class="allocation-table">
+
+                    <tr>
+                        <th>You Receive</th>
+
+                        {% for column in question.columns %}
+                            <td>{{ column.you }}</td>
+                        {% endfor %}
+                    </tr>
+
+                    <tr class="choice-row">
+                        <th>Your Choice</th>
+
+                        {% for column in question.columns %}
+                            <td>
+                                <input
+                                    type="radio"
+                                    name="{{ question.field_name }}"
+                                    value="{{ column.value }}"
+                                    required
+                                >
+                            </td>
+                        {% endfor %}
+                    </tr>
+
+                    <tr>
+                        <th>Other Receives</th>
+
+                        {% for column in question.columns %}
+                            <td>{{ column.other }}</td>
+                        {% endfor %}
+                    </tr>
+
+                </table>
+            </div>
+
+        </div>
+
+    {% endfor %}
+
+    <button class="btn btn-primary">
+        Submit Decisions
+    </button>
+
+</div>
+
+{% endblock %}
+
+{% block styles %}
+
+<style>
+    .svo-page {
+        font-size: large;
+    }
+
+    .svo-page p {
+        line-height: 1.55;
+    }
+
+    .question-box {
+        padding: 20px;
+        margin: 30px 0;
+        border: 1px solid #aaa;
+        background-color: #f8f9fa;
+    }
+
+    .allocation-wrapper {
+        overflow-x: auto;
+        margin: 20px 0;
+    }
+
+    .allocation-table {
+        width: 100%;
+        min-width: 850px;
+        border: 3px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        background-color: white;
+    }
+
+    .allocation-table th,
+    .allocation-table td {
+        padding: 10px 12px;
+        border-bottom: 1px solid black;
+    }
+
+    .allocation-table th {
+        min-width: 145px;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .allocation-table td {
+        min-width: 70px;
+    }
+
+    .choice-row {
+        background-color: #f2f2f2;
+    }
+
+    .choice-row input[type="radio"] {
+        width: 22px;
+        height: 22px;
+        cursor: pointer;
+    }
+
+    hr {
+        margin: 35px 0;
+    }
+</style>
+
+{% endblock %}

@@ -1,0 +1,312 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Thank you for your participation.
+{% endblock %}
+
+{% block content %}
+
+<div class="payment-page">
+
+    <h3>Final Payment </h3>
+
+    <p>
+        The table below summarizes your earnings from each part of the study.
+    </p>
+
+    <div class="payment-section">
+        <h4>Quiz</h4>
+
+        <table class="payment-table">
+            <tr>
+                <th>Correct answers</th>
+                <td>{{ quiz_score }}</td>
+            </tr>
+
+            <tr>
+                <th>Payment per correct answer</th>
+                <td>$0.50</td>
+            </tr>
+
+            <tr>
+                <th>Quiz payment</th>
+                <td>${{ quiz_payment_usd|to2 }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="payment-section">
+        <h4>Part 1</h4>
+
+        <table class="payment-table">
+            <tr>
+                <th>Total pricing points</th>
+                <td>{{ pricing_total_points|to2 }}</td>
+            </tr>
+
+            <tr>
+                <th>Conversion rate</th>
+                <td>1,500 points = $1.00</td>
+            </tr>
+
+            <tr>
+                <th>Pricing payment</th>
+                <td>${{ pricing_payment_usd|to2 }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="payment-section">
+        <h4>Part 2</h4>
+
+        <p>
+            The computer randomly selected
+            <strong>Question {{ svo_selected_question }}</strong>
+            for payment.
+        </p>
+
+        <p>
+            You were randomly assigned the role of
+            <strong>{{ svo_role }}</strong>.
+        </p>
+
+        <table class="payment-table">
+            <tr>
+                <th>Points allocated to the Sender</th>
+                <td>{{ svo_sender_points }}</td>
+            </tr>
+
+            <tr>
+                <th>Points allocated to the Receiver</th>
+                <td>{{ svo_receiver_points }}</td>
+            </tr>
+
+            <tr>
+                <th>Your role</th>
+                <td>{{ svo_role }}</td>
+            </tr>
+
+            <tr>
+                <th>Your points</th>
+                <td>{{ svo_points }}</td>
+            </tr>
+
+            <tr>
+                <th>Conversion rate</th>
+                <td>1 point = $0.05</td>
+            </tr>
+
+            <tr>
+                <th>Your allocation-task payment</th>
+                <td>${{ svo_payment_usd|to2 }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="payment-section">
+        <h4>Part 3</h4>
+
+        <table class="payment-table">
+            <tr>
+                <th>Boxes collected</th>
+                <td>{{ bomb_boxes_collected }}</td>
+            </tr>
+
+            <tr>
+                <th>Bomb location</th>
+                <td>Box {{ bomb_location }}</td>
+            </tr>
+
+            <tr>
+                <th>Was the bomb collected?</th>
+                <td>
+                    {% if bomb_exploded %}
+                        Yes
+                    {% else %}
+                        No
+                    {% endif %}
+                </td>
+            </tr>
+
+            <tr>
+                <th>Payment per safe box</th>
+                <td>$0.05</td>
+            </tr>
+
+            <tr>
+                <th>Bomb Risk Task payment</th>
+                <td>${{ bomb_payment_usd|to2 }}</td>
+            </tr>
+        </table>
+
+        {% if bomb_exploded %}
+            <p class="bomb-result exploded-result">
+                The bomb was among the boxes you collected. Therefore, your
+                payment from this task is $0.00.
+            </p>
+        {% else %}
+            <p class="bomb-result safe-result">
+                The bomb was not among the boxes you collected. Therefore, all
+                of your collected boxes are paid.
+            </p>
+        {% endif %}
+    </div>
+
+    <div class="payment-section">
+        <h4>Participation Payment</h4>
+
+        <table class="payment-table">
+            <tr>
+                <th>Show-up fee</th>
+                <td>${{ show_up_fee_usd|to2 }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="total-box">
+        <h3>Total Payment</h3>
+
+        <table class="total-table">
+            <tr>
+                <th>Quiz payment</th>
+                <td>${{ quiz_payment_usd|to2 }}</td>
+            </tr>
+
+            <tr>
+                <th>Part 1 payment</th>
+                <td>${{ pricing_payment_usd|to2 }}</td>
+            </tr>
+
+            <tr>
+                <th>Part 2 payment</th>
+                <td>${{ svo_payment_usd|to2 }}</td>
+            </tr>
+
+            <tr>
+                <th>Part 3 payment</th>
+                <td>${{ bomb_payment_usd|to2 }}</td>
+            </tr>
+
+            <tr>
+                <th>Show-up fee</th>
+                <td>${{ show_up_fee_usd|to2 }}</td>
+            </tr>
+
+            <tr class="grand-total">
+                <th>Total payment</th>
+                <td>${{ final_payment_usd|to2 }}</td>
+            </tr>
+        </table>
+    </div>
+
+    <p class="final-note">
+        Please remain seated and follow the experimenter's instructions for
+        payment.
+    </p>
+
+    <button class="btn btn-primary">
+        Finish
+    </button>
+
+</div>
+
+{% endblock %}
+
+
+{% block styles %}
+
+<style>
+    .payment-page {
+        font-size: large;
+    }
+
+    .payment-page p {
+        line-height: 1.55;
+    }
+
+    .payment-section {
+        margin: 25px 0;
+        padding: 20px;
+        border: 1px solid #b8b8b8;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+    }
+
+    .payment-section h4 {
+        margin-top: 0;
+        margin-bottom: 16px;
+    }
+
+    .payment-table,
+    .total-table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+    }
+
+    .payment-table th,
+    .payment-table td,
+    .total-table th,
+    .total-table td {
+        padding: 12px;
+        border-bottom: 1px solid #cccccc;
+    }
+
+    .payment-table th,
+    .total-table th {
+        width: 65%;
+        text-align: left;
+        font-weight: 600;
+    }
+
+    .payment-table td,
+    .total-table td {
+        text-align: right;
+    }
+
+    .bomb-result {
+        margin-top: 18px;
+        padding: 14px;
+        font-weight: 600;
+        border-radius: 5px;
+    }
+
+    .exploded-result {
+        border-left: 5px solid #dc3545;
+        background-color: #fff1f2;
+    }
+
+    .safe-result {
+        border-left: 5px solid #198754;
+        background-color: #edf8f1;
+    }
+
+    .total-box {
+        margin: 35px 0 25px 0;
+        padding: 24px;
+        border: 3px solid #198754;
+        background-color: #edf8f1;
+        border-radius: 8px;
+    }
+
+    .total-box h3 {
+        margin-top: 0;
+    }
+
+    .grand-total th,
+    .grand-total td {
+        padding-top: 18px;
+        font-size: 1.3em;
+        font-weight: 800;
+        border-top: 3px solid #198754;
+        border-bottom: none;
+    }
+
+    .final-note {
+        margin-top: 25px;
+        font-weight: 600;
+    }
+</style>
+
+{% endblock %}

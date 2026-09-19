@@ -1,0 +1,50 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Part 3
+{% endblock %}
+
+{% block content %}
+
+<div class="start-page">
+
+    <h3>Ready to Begin?</h3>
+
+    <p>
+        Once you press the button below, boxes will begin to be collected
+        automatically.
+    </p>
+
+    <p>
+        Press <strong>STOP</strong> when you do not want to collect any
+        additional boxes.
+    </p>
+
+    <button class="btn btn-success btn-lg">
+        Start
+    </button>
+
+</div>
+
+{% endblock %}
+
+{% block styles %}
+<style>
+    .start-page {
+        text-align: center;
+        font-size: large;
+        padding: 35px 10px;
+    }
+
+    .start-page p {
+        line-height: 1.55;
+    }
+
+    .start-page button {
+        min-width: 180px;
+        margin-top: 25px;
+        font-size: 1.25em;
+    }
+</style>
+{% endblock %}

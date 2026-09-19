@@ -1,0 +1,55 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    End of the Quiz
+{% endblock %}
+
+{% block content %}
+
+<div class="card card-body bg-light instructions">
+    <div class="big">
+
+        <p>
+            You have completed the quiz.
+        </p>
+
+        <p>
+            On the next page, Part 1 will begin.
+        </p>
+
+        <p>
+            Please click <strong>Continue</strong> when you are ready to begin.
+        </p>
+
+        <button class="btn btn-primary">
+            Continue
+        </button>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block styles %}
+<style>
+    .big {
+        font-size: large;
+    }
+
+    .big p {
+        line-height: 1.5;
+    }
+
+    .summary-box {
+        padding: 18px;
+        margin: 20px 0;
+        border-left: 5px solid #315f9f;
+        background-color: #eef5ff;
+    }
+
+    .summary-box p:last-child {
+        margin-bottom: 0;
+    }
+</style>
+{% endblock %}

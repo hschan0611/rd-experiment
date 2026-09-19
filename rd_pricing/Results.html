@@ -1,0 +1,492 @@
+{% block title %}
+    Round {{ subsession.round_in_supergame }} Results
+{% endblock %}
+
+{% block content %}
+
+<div class="card card-body bg-light instructions">
+    <div class="big">
+
+        <!-- ========================================================= -->
+        <!-- ROUND SUMMARY -->
+        <!-- ========================================================= -->
+
+        <div class="round-summary">
+
+            <div class="summary-item">
+                <strong>Your Investment</strong>
+
+                <span>
+                    {% if my_invest %}
+                        YES
+                    {% else %}
+                        NO
+                    {% endif %}
+                </span>
+            </div>
+
+
+            <div class="summary-item">
+                <strong>Counterpart's Investment</strong>
+
+                <span>
+                    {% if other_invest %}
+                        YES
+                    {% else %}
+                        NO
+                    {% endif %}
+                </span>
+            </div>
+
+
+            <div class="summary-item earnings-item">
+                <strong>Your Earnings This Round</strong>
+                <span>{{ profit }}</span>
+            </div>
+
+        </div>
+
+
+        <!-- ========================================================= -->
+        <!-- PRICE CHOICES -->
+        <!-- ========================================================= -->
+
+        <div class="price-summary">
+
+            <div class="summary-item">
+                <strong>Your Price Choice</strong>
+                <span>{{ my_price }}</span>
+            </div>
+
+            <div class="summary-item">
+                <strong>Counterpart's Price Choice</strong>
+                <span>{{ other_price }}</span>
+            </div>
+
+        </div>
+
+
+        <!-- ========================================================= -->
+        <!-- EARNINGS TABLE -->
+        <!-- ========================================================= -->
+
+        <h4>Your Earnings Table</h4>
+
+        <p>
+            Your price choices are shown in the rows. Your counterpart's price
+            choices are shown in the columns. The highlighted cell shows your
+            earnings for this round.
+        </p>
+
+
+        <div class="payoff-table-container">
+
+            <div class="your-price-label">
+                Your Price<br>
+                Choice
+            </div>
+
+            <div class="table-wrapper">
+
+                <div class="counterpart-price-label">
+                    Counterpart's Price Choice
+                </div>
+
+                <table class="payoff-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th></th>
+
+                            {% for choice in display_choices %}
+
+                                <th
+                                    class="
+                                        {% if forloop.counter0 == other_price_index %}
+                                            selected-column-header
+                                        {% endif %}
+                                    "
+                                >
+                                    {{ choice }}
+                                </th>
+
+                            {% endfor %}
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for my_choice, row in matrix_rows %}
+
+                            <tr>
+
+                                <th
+                                    class="
+                                        {% if my_choice == my_price %}
+                                            selected-row-header
+                                        {% endif %}
+                                    "
+                                >
+                                    {{ my_choice }}
+                                </th>
+
+
+                                {% for cell in row %}
+
+                                    <td
+                                        class="
+                                            {% if my_choice == my_price %}
+                                                selected-row
+                                            {% endif %}
+
+                                            {% if forloop.counter0 == other_price_index %}
+                                                selected-column
+                                            {% endif %}
+
+                                            {% if my_choice == my_price and forloop.counter0 == other_price_index %}
+                                                selected-cell
+                                            {% endif %}
+                                        "
+                                    >
+                                        {{ cell }}
+                                    </td>
+
+                                {% endfor %}
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- ========================================================= -->
+        <!-- HISTORY -->
+        <!-- ========================================================= -->
+
+        <h4>History of Rounds in the Current Match</h4>
+
+        <div class="history-wrapper">
+
+            <table class="table table-bordered text-center history-table">
+
+                <thead>
+
+                    <tr>
+                        <th>Round</th>
+                        <th>Your Investment</th>
+                        <th>Counterpart's Investment</th>
+                        <th>Your Price Choice</th>
+                        <th>Counterpart's Price Choice</th>
+                        <th>Your Round Earnings</th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    {% for row in history_rows %}
+
+                        <tr>
+
+                            <td>
+                                {{ row.round_in_supergame }}
+                            </td>
+
+
+                            <td>
+
+                                {% if row.my_invest %}
+
+                                    <span class="invest-yes">
+                                        YES
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="invest-no">
+                                        NO
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+
+                                {% if row.other_invest %}
+
+                                    <span class="invest-yes">
+                                        YES
+                                    </span>
+
+                                {% else %}
+
+                                    <span class="invest-no">
+                                        NO
+                                    </span>
+
+                                {% endif %}
+
+                            </td>
+
+
+                            <td>
+                                {{ row.my_price }}
+                            </td>
+
+
+                            <td>
+                                {{ row.other_price }}
+                            </td>
+
+
+                            <td>
+                                <strong>
+                                    {{ row.profit }}
+                                </strong>
+                            </td>
+
+                        </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <button class="btn btn-primary">
+            Next
+        </button>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block styles %}
+
+<style>
+
+    .big {
+        font-size: large;
+    }
+
+    .big p {
+        line-height: 1.5;
+    }
+
+
+    /* ========================================================= */
+    /* SUMMARY */
+    /* ========================================================= */
+
+    .round-summary,
+    .price-summary {
+        display: grid;
+        gap: 15px;
+        margin: 20px 0;
+    }
+
+    .round-summary {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .price-summary {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .summary-item {
+        padding: 16px;
+        border: 1px solid #aaa;
+        background-color: white;
+        text-align: center;
+    }
+
+    .summary-item strong {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .summary-item span {
+        font-size: 1.25em;
+        font-weight: 700;
+    }
+
+    .earnings-item {
+        border-left: 5px solid #315f9f;
+        background-color: #eef5ff;
+    }
+
+    .invest-yes {
+        color: #157347;
+        font-weight: 700;
+    }
+
+    .invest-no {
+        color: #b02a37;
+        font-weight: 700;
+    }
+
+
+    /* ========================================================= */
+    /* PAYOFF TABLE */
+    /* ========================================================= */
+
+    .payoff-table-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px 0 35px 0;
+        overflow-x: auto;
+    }
+
+    .your-price-label {
+        min-width: 120px;
+        font-weight: 700;
+        text-align: right;
+        line-height: 1.2;
+    }
+
+    .table-wrapper {
+        min-width: max-content;
+    }
+
+    .counterpart-price-label {
+        margin-bottom: 8px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .payoff-table {
+        border: 2px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        background-color: white;
+    }
+
+    .payoff-table th,
+    .payoff-table td {
+        min-width: 68px;
+        padding: 7px 10px;
+        border: 1px solid #999;
+        white-space: nowrap;
+    }
+
+    .payoff-table th {
+        background-color: #f2f2f2;
+        font-weight: 700;
+    }
+
+
+    /* ========================================================= */
+    /* SELECTED ROW / COLUMN / CELL */
+    /* ========================================================= */
+
+    .selected-row {
+        background-color: #edf9f0;
+    }
+
+    .selected-column {
+        background-color: #f2f2f2;
+    }
+
+    .selected-row-header {
+        background-color: #c8f3d2 !important;
+        border: 3px solid #198754 !important;
+    }
+
+    .selected-column-header {
+        background-color: #e2e2e2 !important;
+        border: 3px solid #777 !important;
+    }
+
+    .selected-cell {
+        background-color: #d1e7dd !important;
+        border: 4px solid #198754 !important;
+        font-weight: 800;
+    }
+
+
+    /* ========================================================= */
+    /* HISTORY */
+    /* ========================================================= */
+
+    .history-wrapper {
+        overflow-x: auto;
+        margin-bottom: 25px;
+    }
+
+    .history-table th {
+        vertical-align: middle;
+        background-color: #f2f2f2;
+    }
+
+    .history-table td {
+        vertical-align: middle;
+    }
+
+
+    /* ========================================================= */
+    /* NEXT ROUND */
+    /* ========================================================= */
+
+    .next-round-box {
+        padding: 16px;
+        margin: 25px 0;
+        border-left: 5px solid #b7791f;
+        background-color: #fff8e6;
+    }
+
+    .next-round-box p:last-child {
+        margin-bottom: 0;
+    }
+
+    hr {
+        margin: 30px 0;
+    }
+
+
+    /* ========================================================= */
+    /* MOBILE */
+    /* ========================================================= */
+
+    @media (max-width: 900px) {
+
+        .round-summary,
+        .price-summary {
+            grid-template-columns: 1fr;
+        }
+
+        .payoff-table-container {
+            display: block;
+        }
+
+        .your-price-label {
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+    }
+
+</style>
+
+{% endblock %}

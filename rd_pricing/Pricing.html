@@ -1,0 +1,243 @@
+{% block title %}
+    Pricing Decision
+{% endblock %}
+
+{% block content %}
+
+<div class="card card-body bg-light instructions">
+    <div class="big">
+
+        <div class="outcome-summary">
+
+            <p>
+                <strong>Your investment decision:</strong>
+
+                {% if my_invest %}
+                    <span class="invest-yes">YES</span>
+                {% else %}
+                    <span class="invest-no">NO</span>
+                {% endif %}
+            </p>
+
+            <p>
+                <strong>Your counterpart's investment decision:</strong>
+
+                {% if other_invest %}
+                    <span class="invest-yes">YES</span>
+                {% else %}
+                    <span class="invest-no">NO</span>
+                {% endif %}
+            </p>
+
+        </div>
+
+
+        <h4>Your Earnings Table</h4>
+
+        <p>
+            Your price choices are shown in the rows. Your counterpart's price
+            choices are shown in the columns. The number at the intersection
+            of the selected row and column is your earnings for the round.
+        </p>
+
+
+        <div class="payoff-table-container">
+
+            <div class="your-price-label">
+                Your Price<br>
+                Choice
+            </div>
+
+            <div class="table-wrapper">
+
+                <div class="counterpart-price-label">
+                    Counterpart's Price Choice
+                </div>
+
+                <table class="payoff-table">
+
+                    <thead>
+                        <tr>
+
+                            <th></th>
+
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+
+                        {% for my_choice, row in matrix_rows %}
+
+                            <tr>
+
+                                <th>
+                                    {{ my_choice }}
+                                </th>
+
+                                {% for cell in row %}
+                                    <td>
+                                        {{ cell }}
+                                    </td>
+                                {% endfor %}
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <div class="decision-box">
+
+            <h4>Select Your Price Choice</h4>
+
+            <p>
+                Choose one price choice from 1 to 8.
+            </p>
+
+            {{ formfield 'price' }}
+
+        </div>
+
+
+        <button class="btn btn-primary">
+            Submit Price Choice
+        </button>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block styles %}
+
+<style>
+
+    .big {
+        font-size: large;
+    }
+
+    .big p,
+    .big label {
+        line-height: 1.5;
+    }
+
+    .outcome-summary {
+        padding: 18px;
+        margin: 20px 0;
+        border: 1px solid #aaa;
+        background-color: white;
+    }
+
+    .outcome-summary p {
+        margin-bottom: 10px;
+    }
+
+    .outcome-summary p:last-child {
+        margin-bottom: 0;
+    }
+
+    .invest-yes {
+        color: #157347;
+        font-weight: 700;
+    }
+
+    .invest-no {
+        color: #b02a37;
+        font-weight: 700;
+    }
+
+    .payoff-table-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin: 20px 0 35px 0;
+        overflow-x: auto;
+    }
+
+    .your-price-label {
+        min-width: 120px;
+        font-weight: 700;
+        text-align: right;
+        line-height: 1.2;
+    }
+
+    .table-wrapper {
+        min-width: max-content;
+    }
+
+    .counterpart-price-label {
+        margin-bottom: 8px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .payoff-table {
+        border: 2px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        background-color: white;
+    }
+
+    .payoff-table th,
+    .payoff-table td {
+        min-width: 68px;
+        padding: 7px 10px;
+        border: 1px solid #999;
+        white-space: nowrap;
+    }
+
+    .payoff-table th {
+        background-color: #f2f2f2;
+        font-weight: 700;
+    }
+
+    .decision-box {
+        padding: 20px;
+        margin: 25px 0;
+        border-left: 5px solid #315f9f;
+        background-color: #eef5ff;
+    }
+
+    .decision-box h4 {
+        margin-top: 0;
+    }
+
+    .form-check {
+        margin: 10px 0;
+    }
+
+    @media (max-width: 900px) {
+
+        .payoff-table-container {
+            display: block;
+        }
+
+        .your-price-label {
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+    }
+
+</style>
+
+{% endblock %}

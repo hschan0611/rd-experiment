@@ -1,0 +1,40 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    End of Part 1
+{% endblock %}
+
+{% block content %}
+
+<div class="card card-body bg-light instructions">
+    <div class="big">
+
+        <p>
+            You have completed Part 1.
+        </p>
+
+        <p>
+            On the next page, you will begin Part 2.
+        </p>
+
+        <button class="btn btn-primary">
+            Continue to Part 2
+        </button>
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block styles %}
+<style>
+    .big {
+        font-size: large;
+    }
+
+    .big p {
+        line-height: 1.5;
+    }
+</style>
+{% endblock %}

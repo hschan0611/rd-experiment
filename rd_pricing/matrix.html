@@ -1,0 +1,17 @@
+<table border="1" style="border-collapse: collapse; text-align:center;">
+    <tr>
+        <th>Your price \ Other price</th>
+        {% for p in prices %}
+            <th>{{ p }}</th>
+        {% endfor %}
+    </tr>
+
+    {% for my_p, row in matrix_rows %}
+    <tr>
+        <th>{{ my_p }}</th>
+        {% for cell in row %}
+            <td>{{ cell }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>

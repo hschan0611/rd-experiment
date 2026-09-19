@@ -10,12 +10,12 @@ SESSION_CONFIG_DEFAULTS = {
 # Session configurations
 SESSION_CONFIGS = [
     dict(
-        name='prisoner',
-        display_name='Infinitely Repeated PD',
-        num_demo_participants=20,
-        app_sequence=['prisoner', 'payment'],
-        real_world_currency_per_point=1 / 25,  # 25 pts = $1
-        participation_fee=5.00,  # $5 show-up fee
+        name='rd_pricing',
+        display_name="R&D Pricing Game",
+        num_demo_participants=2,
+        app_sequence=['rd_pricing'],
+        real_world_currency_per_point=0.01,
+        participation_fee=5.00,
     ),
 ]
 

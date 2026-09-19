@@ -1,0 +1,55 @@
+{% block title %}
+    Welcome!
+{% endblock %}
+
+{% block content %}
+
+<div class="card card-body bg-light instructions">
+    <div class="big">
+
+        <p>
+            This experiment is a study of group and individual decision-making.
+            The amount of money you earn depends partly on the decisions that you make,
+            so you should read the instructions carefully.
+        </p>
+
+        <p>
+            The money you earn will be paid privately to you, in cash, at the end of
+            the experiment.
+        </p>
+
+        <p>
+            This experiment consists of three parts. You will first receive the
+            instructions for Part 1. After Part 1 is completed, you will receive the
+            instructions for the remaining parts. The instructions for each part
+            explain how your earnings in that part will be determined.
+        </p>
+
+        <p>
+            The three parts are independent. Your decisions and earnings in one part
+            will not affect your decisions or earnings in any other part.
+        </p>
+
+        <p>
+            Please put away your cell phones and other distracting devices for the
+            duration of the experiment.
+        </p>
+
+        <p>
+            If you have any questions, please raise your hand.
+        </p>
+
+    </div>
+
+    {% next_button %}
+</div>
+
+{% endblock %}
+
+{% block styles %}
+<style type="text/css">
+    .big {
+        font-size: large;
+    }
+</style>
+{% endblock %}

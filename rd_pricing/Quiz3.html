@@ -1,0 +1,241 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Quiz 3
+{% endblock %}
+
+{% block content %}
+
+<div class="card card-body bg-light instructions">
+    <div class="big">
+
+        <p>
+            Use the earnings table below to answer the question.
+            This table applies when
+            <strong>both you and your counterpart invest</strong>.
+        </p>
+
+        <div class="payoff-table-container">
+
+            <div class="your-price-label">
+                Your Price<br>
+                Choice
+            </div>
+
+            <div class="table-wrapper">
+
+                <div class="counterpart-price-label">
+                    Counterpart's Price Choice
+                </div>
+
+                <table class="payoff-table">
+
+                    <thead>
+                        <tr>
+                            <th></th>
+
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for my_choice, row in p11_rows %}
+
+                            <tr>
+
+                                <th>
+                                    {{ my_choice }}
+                                </th>
+
+                                {% for cell in row %}
+                                    <td>
+                                        {{ cell }}
+                                    </td>
+                                {% endfor %}
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <hr>
+
+
+        <div class="quiz-form">
+
+            {{ formfield 'quiz_q3' }}
+
+        </div>
+
+
+        <button class="btn btn-primary submit-button">
+            Submit Answer
+        </button>
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block styles %}
+
+<style>
+
+    .big {
+        font-size: large;
+    }
+
+    .big p,
+    .big label {
+        line-height: 1.5;
+    }
+
+
+    /* --------------------------------------------------------- */
+    /* Earnings table */
+    /* --------------------------------------------------------- */
+
+    .payoff-table-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin: 25px 0;
+        overflow-x: auto;
+    }
+
+    .your-price-label {
+        min-width: 110px;
+        font-weight: 700;
+        text-align: right;
+        line-height: 1.2;
+    }
+
+    .table-wrapper {
+        min-width: max-content;
+    }
+
+    .counterpart-price-label {
+        margin-bottom: 8px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .payoff-table {
+        border: 2px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        background-color: white;
+    }
+
+    .payoff-table th,
+    .payoff-table td {
+        min-width: 68px;
+        padding: 7px 10px;
+        border: 1px solid #999;
+        white-space: nowrap;
+    }
+
+    .payoff-table th {
+        font-weight: 700;
+        background-color: #f2f2f2;
+    }
+
+
+    /* --------------------------------------------------------- */
+    /* Quiz question */
+    /* --------------------------------------------------------- */
+
+    .quiz-form .form-label,
+    .quiz-form > label {
+        display: block;
+        padding: 18px;
+        margin: 10px 0 20px 0;
+        border: 1px solid #ccc;
+        background-color: white;
+        font-weight: 600;
+    }
+
+
+    /* --------------------------------------------------------- */
+    /* Answer choices */
+    /* --------------------------------------------------------- */
+
+    .quiz-form .form-check {
+        display: flex;
+        align-items: center;
+        min-height: 58px;
+        padding: 10px 15px;
+        margin: 8px 0;
+        border: 2px solid transparent;
+        border-radius: 6px;
+    }
+
+    .quiz-form .form-check:hover {
+        background-color: #f7f7f7;
+    }
+
+    .quiz-form .form-check-input {
+        width: 24px;
+        height: 24px;
+        margin-right: 15px;
+        flex-shrink: 0;
+    }
+
+    .quiz-form .form-check-label {
+        font-size: 1.15em;
+        margin-left: 5px;
+    }
+
+
+    /* --------------------------------------------------------- */
+    /* Submit button */
+    /* --------------------------------------------------------- */
+
+    .submit-button {
+        margin-top: 20px;
+    }
+
+    hr {
+        margin: 30px 0;
+    }
+
+
+    /* --------------------------------------------------------- */
+    /* Mobile */
+    /* --------------------------------------------------------- */
+
+    @media (max-width: 900px) {
+
+        .payoff-table-container {
+            display: block;
+        }
+
+        .your-price-label {
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+    }
+
+</style>
+
+{% endblock %}

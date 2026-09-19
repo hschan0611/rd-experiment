@@ -1,0 +1,148 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Match Status
+{% endblock %}
+
+{% block content %}
+
+<div class="card card-body bg-light instructions">
+    <div class="big">
+
+        {% if match_continues %}
+
+            <div class="status-box continue-box">
+
+                <h2>The Match Continues</h2>
+
+                <p>
+                    The computer determined that the current match will
+                    continue for another pricing round.
+                </p>
+
+            </div>
+
+                <p>
+                    On the next page, you and your counterpart will each make
+                    another price decision.
+                </p>
+
+            </div>
+
+            <button class="btn btn-primary">
+                Continue to the Next Pricing Round
+            </button>
+
+        {% else %}
+
+            <div class="status-box end-box">
+
+                <h2>The Match Has Ended</h2>
+
+                <p>
+                    The computer determined that the current match ends after
+                    this pricing round.
+                </p>
+
+            </div>
+
+            {% if new_match_next %}
+
+                    <p>
+                        On the next page, a new match will begin with a new
+                        investment decision.
+                    </p>
+
+                </div>
+
+                <button class="btn btn-primary">
+                    Begin the Next Match
+                </button>
+
+            {% elif part_ends %}
+
+                <div class="information-box">
+
+                    <p>
+                        You have completed the final match in this part of the
+                        experiment.
+                    </p>
+
+                    <p>
+                        Click <strong>Continue</strong> to proceed.
+                    </p>
+
+                </div>
+
+                <button class="btn btn-primary">
+                    Continue
+                </button>
+
+            {% endif %}
+
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}
+
+{% block styles %}
+
+<style>
+    .big {
+        font-size: large;
+    }
+
+    .big p {
+        line-height: 1.5;
+    }
+
+    .status-box {
+        padding: 25px;
+        margin: 20px 0;
+        text-align: center;
+        border: 2px solid;
+    }
+
+    .status-box h2 {
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    .status-box p:last-child {
+        margin-bottom: 0;
+    }
+
+    .continue-box {
+        border-color: #198754;
+        background-color: #eaf7ef;
+    }
+
+    .continue-box h2 {
+        color: #157347;
+    }
+
+    .end-box {
+        border-color: #b02a37;
+        background-color: #fbeaec;
+    }
+
+    .end-box h2 {
+        color: #b02a37;
+    }
+
+    .information-box {
+        padding: 20px;
+        margin: 25px 0;
+        border-left: 5px solid #315f9f;
+        background-color: #eef5ff;
+    }
+
+    .information-box p:last-child {
+        margin-bottom: 0;
+    }
+</style>
+
+{% endblock %}

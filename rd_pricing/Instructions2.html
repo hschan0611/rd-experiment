@@ -1,0 +1,162 @@
+{% block title %}
+    Instructions for Part 1
+{% endblock %}
+
+{% block content %}
+
+<div class="card card-body bg-light instructions">
+    <div class="big">
+
+        <p>
+            Your earnings in this part will be measured in points. These points
+            will be converted to U.S. dollars at the rate of
+            <strong>1500 points = $1</strong>.
+        </p>
+
+        <p>
+            In Part 1, you will take on the role of a producer who sells a product
+            to computerized buyers. Participants will be divided into industries.
+            Each industry consists of two producers who produce and sell similar
+            products.
+        </p>
+
+        <p>
+            You will represent one producer in an industry. The other producer in
+            your industry is another participant in this room, whom we will refer
+            to as your <strong>counterpart</strong>. Your counterpart faces the same
+            conditions as you. You will never learn your counterpart's identity.
+        </p>
+
+        <p>
+            Part 1 consists of a sequence of interactions, which we call
+            <strong>matches</strong>. At the beginning of each match, you will be
+            randomly paired with another participant.
+        </p>
+
+        <p>
+            Each match consists of two stages:
+        </p>
+
+        <ol>
+            <li>
+                <strong>Investment stage:</strong> You and your counterpart each
+                make an investment decision. The investment decisions made at the
+                beginning of the match apply to all pricing rounds in that match.
+            </li>
+
+            <li>
+                <strong>Pricing stage:</strong> You and your counterpart each make
+                a price choice in every pricing round. The number of pricing rounds
+                in a match is randomly determined.
+            </li>
+        </ol>
+
+        <p>
+            The customers who purchase your products are simulated by the computer.
+            The higher the price of one producer's product relative to the price of
+            the other producer's product, the fewer units the computerized buyers
+            will purchase from the higher-priced producer and the more units they
+            will purchase from the lower-priced producer.
+        </p>
+
+        <p>
+            Your earnings depend on your investment decision, your price choice,
+            and the investment and price choices of your counterpart. Investment
+            decisions affect production costs. Price choices affect the number of
+            units sold and the earnings from those sales.
+        </p>
+
+        <p>
+            Your production costs and the buyers' demand together determine your
+            earnings. This information will be presented in
+            <strong>earnings tables</strong>, which will be explained in more
+            detail later.
+        </p>
+
+        <p>
+            At the end of each pricing round, you will learn your counterpart's
+            price choice and the number of points you earned in that round.
+        </p>
+
+        <p>
+            The number of pricing rounds in each match is
+            <strong>randomly determined</strong>. After every pricing round, there
+            is an <strong>80% probability</strong> that the match will continue for
+            another pricing round and a <strong>20% probability</strong> that the
+            match will end.
+        </p>
+
+        <p>
+            This continuation probability is the same after every pricing round.
+            For example:
+        </p>
+
+        <ul>
+            <li>
+                If you are in round 2, there is an 80% probability that there
+                will be a third round.
+            </li>
+
+            <li>
+                If you are in round 9, there is also an 80% probability that
+                there will be a tenth round.
+            </li>
+        </ul>
+
+        <p>
+            At the end of each pricing round, the computer randomly draws a number
+            from 1 to 100, with each number being equally likely.
+        </p>
+
+        <ul>
+            <li>
+                If the number drawn is between 1 and 80, the match continues for
+                another pricing round.
+            </li>
+
+            <li>
+                If the number drawn is between 81 and 100, the match ends.
+            </li>
+        </ul>
+
+        <p>
+            If the match continues, the investment decisions made at the beginning
+            of the match continue to apply. You and your counterpart will each make
+            a new price choice for the next pricing round.
+        </p>
+
+        <p>
+            If the match ends, a new match begins. You will be randomly paired
+            with another participant, and you and your new counterpart will each
+            make a new investment decision before beginning the pricing stage of
+            the new match.
+        </p>
+
+        <p>
+            The computer will randomly select one match for payment. You will be
+            paid for all pricing rounds in the selected match. You will also
+            receive a <strong>$5 show-up fee</strong>. The more points you earn,
+            the more money you will receive at the end of the experiment.
+        </p>
+
+    </div>
+
+    {% next_button %}
+</div>
+
+{% endblock %}
+
+{% block styles %}
+<style type="text/css">
+
+    .big {
+        font-size: large;
+    }
+
+    .big p,
+    .big li {
+        line-height: 1.5;
+    }
+
+</style>
+{% endblock %}

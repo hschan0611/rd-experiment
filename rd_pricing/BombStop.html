@@ -1,0 +1,211 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Part 3
+{% endblock %}
+
+{% block content %}
+
+<input
+    type="hidden"
+    name="bomb_boxes_collected"
+    id="id_bomb_boxes_collected"
+    value="0"
+>
+
+<div class="bomb-task">
+
+    <h3>Boxes Are Being Collected</h3>
+
+    <div class="counter-box">
+        <div class="counter-label">
+            Boxes collected
+        </div>
+
+        <div id="box-counter" class="counter-number">
+            0
+        </div>
+
+        <div class="counter-total">
+            out of {{ number_of_boxes }}
+
+    <div class="progress-container">
+        <div
+            id="collection-progress"
+            class="collection-progress"
+        ></div>
+    </div>
+
+    <button
+        type="button"
+        id="stop-button"
+        class="btn btn-danger stop-button"
+    >
+        STOP
+    </button>
+
+    <p id="stopped-message" class="stopped-message">
+        Collection stopped. Submitting your decision...
+    </p>
+
+    <button
+        type="submit"
+        id="hidden-submit"
+        class="d-none"
+    >
+        Submit
+    </button>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const totalBoxes = {{ number_of_boxes }};
+        const dollarsPerBox = {{ dollars_per_box }};
+        const intervalMilliseconds = {{ collection_interval_ms }};
+
+        const counterElement = document.getElementById("box-counter");
+        const earningsElement = document.getElementById(
+            "potential-earnings"
+        );
+        const progressElement = document.getElementById(
+            "collection-progress"
+        );
+        const hiddenField = document.getElementById(
+            "id_bomb_boxes_collected"
+        );
+        const stopButton = document.getElementById("stop-button");
+        const stoppedMessage = document.getElementById(
+            "stopped-message"
+        );
+        const hiddenSubmit = document.getElementById("hidden-submit");
+
+        let boxesCollected = 0;
+        let taskStopped = false;
+
+        function updateDisplay() {
+            counterElement.textContent = boxesCollected;
+
+            earningsElement.textContent = (
+                boxesCollected * dollarsPerBox
+            ).toFixed(2);
+
+            progressElement.style.width = (
+                (boxesCollected / totalBoxes) * 100
+            ) + "%";
+
+            hiddenField.value = boxesCollected;
+        }
+
+        function stopTask() {
+            if (taskStopped) {
+                return;
+            }
+
+            taskStopped = true;
+            clearInterval(collectionTimer);
+
+            hiddenField.value = boxesCollected;
+            stopButton.disabled = true;
+            stoppedMessage.style.display = "block";
+
+            hiddenSubmit.click();
+        }
+
+        const collectionTimer = setInterval(function () {
+            if (taskStopped) {
+                return;
+            }
+
+            if (boxesCollected < totalBoxes) {
+                boxesCollected += 1;
+                updateDisplay();
+            }
+
+            if (boxesCollected >= totalBoxes) {
+                stopTask();
+            }
+        }, intervalMilliseconds);
+
+        stopButton.addEventListener("click", stopTask);
+
+        updateDisplay();
+    });
+</script>
+
+{% endblock %}
+
+{% block styles %}
+<style>
+    .bomb-task {
+        text-align: center;
+        font-size: large;
+    }
+
+    .counter-box {
+        width: 280px;
+        margin: 30px auto 20px auto;
+        padding: 25px;
+        border: 2px solid #555;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+    }
+
+    .counter-label {
+        font-weight: 600;
+    }
+
+    .counter-number {
+        margin: 10px 0;
+        font-size: 4em;
+        font-weight: 800;
+        line-height: 1;
+    }
+
+    .counter-total {
+        color: #555;
+    }
+
+    .earnings-box {
+        margin: 20px auto;
+        padding: 15px;
+        max-width: 500px;
+        background-color: #eef5ff;
+        border: 1px solid #9bbbe5;
+        border-radius: 6px;
+    }
+
+    .progress-container {
+        width: 100%;
+        max-width: 650px;
+        height: 28px;
+        margin: 25px auto;
+        overflow: hidden;
+        border: 1px solid #777;
+        background-color: #eeeeee;
+        border-radius: 5px;
+    }
+
+    .collection-progress {
+        width: 0;
+        height: 100%;
+        background-color: #198754;
+        transition: width 0.2s linear;
+    }
+
+    .stop-button {
+        width: 230px;
+        padding: 18px;
+        margin-top: 15px;
+        font-size: 1.6em;
+        font-weight: 800;
+    }
+
+    .stopped-message {
+        display: none;
+        margin-top: 20px;
+        font-weight: 600;
+    }
+</style>
+{% endblock %}

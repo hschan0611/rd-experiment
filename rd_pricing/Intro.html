@@ -1,0 +1,90 @@
+{% block title %}
+    Summary of Part 1
+{% endblock %}
+
+{% block content %}
+
+<div class="card card-body bg-light instructions">
+    <div class="big">
+
+        <p>
+            In Part 1, you will make decisions as a seller-producer in a series of
+            matches.
+        </p>
+
+        <ul>
+            <li>
+                At the beginning of each match, you will be randomly paired with
+                another participant, who will remain your counterpart throughout
+                that match.
+            </li>
+
+            <li>
+                You and your counterpart will each make a
+                <strong>YES</strong> or <strong>NO</strong> investment decision.
+                If you choose <strong>YES</strong>, your investment will succeed
+                with an <strong>80% probability</strong> and fail with a
+                <strong>20% probability</strong>.
+            </li>
+
+            <li>
+                Each producer's investment outcome is determined independently.
+                The combination of the two investment outcomes determines which
+                earnings table applies during the match.
+            </li>
+
+            <li>
+                In every pricing round, you and your counterpart will each choose a
+                price simultaneously. Your earnings depend on both price choices
+                and the earnings table that applies.
+            </li>
+
+            <li>
+                At the end of each pricing round, you will learn your counterpart's
+                price and your earnings for that round.
+            </li>
+
+            <li>
+                After each pricing round, there is an
+                <strong>80% probability</strong> that the match will continue and a
+                <strong>20% probability</strong> that it will end.
+            </li>
+
+            <li>
+                If the match continues, the same investment outcomes and earnings
+                table remain in effect. If the match ends, a new match begins with
+                a newly assigned counterpart and new investment decisions.
+            </li>
+
+            <li>
+                You will be paid for all pricing rounds completed in Part 1.
+            </li>
+        </ul>
+
+        <p>
+             You will now take a computerized quiz. You will earn $0.5 for each correct answer.
+        </p>
+
+    </div>
+
+    {% next_button %}
+</div>
+
+{% endblock %}
+
+{% block styles %}
+<style type="text/css">
+    .big {
+        font-size: large;
+    }
+
+    .big p,
+    .big li {
+        line-height: 1.5;
+    }
+
+    .big li {
+        margin-bottom: 0.6em;
+    }
+</style>
+{% endblock %}

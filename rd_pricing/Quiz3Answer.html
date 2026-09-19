@@ -1,0 +1,521 @@
+{% block title %}
+    Quiz 3 Answer
+{% endblock %}
+
+{% block content %}
+
+<div class="card card-body bg-light instructions">
+    <div class="big">
+
+        <!-- ===================================================== -->
+        <!-- QUESTION -->
+        <!-- ===================================================== -->
+
+        <div class="question-box">
+            {{ question }}
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- FOUR ANSWER OPTIONS -->
+        <!-- ===================================================== -->
+
+        <div class="answer-options">
+
+            <!-- OPTION 1 -->
+            <div class="answer-option">
+
+                <span class="radio-circle
+                    {% if selected_answer == option1 %}selected-radio{% endif %}
+                ">
+                    {% if selected_answer == option1 %}
+                        <span class="radio-dot"></span>
+                    {% endif %}
+                </span>
+
+                <span class="option-text">
+                    {{ option1 }}
+                </span>
+
+                {% if selected_answer == option1 %}
+                    <span class="answer-label">
+                        Your answer
+                    </span>
+                {% endif %}
+
+                {% if correct_answer == option1 %}
+                    <span class="correct-label">
+                        Correct answer
+                    </span>
+                {% endif %}
+
+            </div>
+
+
+            <!-- OPTION 2 -->
+            <div class="answer-option">
+
+                <span class="radio-circle
+                    {% if selected_answer == option2 %}selected-radio{% endif %}
+                ">
+                    {% if selected_answer == option2 %}
+                        <span class="radio-dot"></span>
+                    {% endif %}
+                </span>
+
+                <span class="option-text">
+                    {{ option2 }}
+                </span>
+
+                {% if selected_answer == option2 %}
+                    <span class="answer-label">
+                        Your answer
+                    </span>
+                {% endif %}
+
+                {% if correct_answer == option2 %}
+                    <span class="correct-label">
+                        Correct answer
+                    </span>
+                {% endif %}
+
+            </div>
+
+
+            <!-- OPTION 3 -->
+            <div class="answer-option">
+
+                <span class="radio-circle
+                    {% if selected_answer == option3 %}selected-radio{% endif %}
+                ">
+                    {% if selected_answer == option3 %}
+                        <span class="radio-dot"></span>
+                    {% endif %}
+                </span>
+
+                <span class="option-text">
+                    {{ option3 }}
+                </span>
+
+                {% if selected_answer == option3 %}
+                    <span class="answer-label">
+                        Your answer
+                    </span>
+                {% endif %}
+
+                {% if correct_answer == option3 %}
+                    <span class="correct-label">
+                        Correct answer
+                    </span>
+                {% endif %}
+
+            </div>
+
+
+            <!-- OPTION 4 -->
+            <div class="answer-option">
+
+                <span class="radio-circle
+                    {% if selected_answer == option4 %}selected-radio{% endif %}
+                ">
+                    {% if selected_answer == option4 %}
+                        <span class="radio-dot"></span>
+                    {% endif %}
+                </span>
+
+                <span class="option-text">
+                    {{ option4 }}
+                </span>
+
+                {% if selected_answer == option4 %}
+                    <span class="answer-label">
+                        Your answer
+                    </span>
+                {% endif %}
+
+                {% if correct_answer == option4 %}
+                    <span class="correct-label">
+                        Correct answer
+                    </span>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- CORRECT / INCORRECT -->
+        <!-- ===================================================== -->
+
+        {% if is_correct %}
+
+            <div class="correct-box">
+                <h4>Your answer is correct.</h4>
+            </div>
+
+        {% else %}
+
+            <div class="incorrect-box">
+
+                <h4>Your answer is not correct.</h4>
+
+                <p>
+                    The correct answer is
+                    <strong>{{ correct_answer }}</strong>
+                </p>
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- ===================================================== -->
+        <!-- RELEVANT EARNINGS TABLE -->
+        <!-- ===================================================== -->
+
+        <h4>
+            Earnings Table: Both Producers Invest
+        </h4>
+
+        <div class="payoff-table-container">
+
+            <div class="your-price-label">
+                Your Price<br>
+                Choice
+            </div>
+
+            <div class="table-wrapper">
+
+                <div class="counterpart-price-label">
+                    Counterpart's Price Choice
+                </div>
+
+                <table class="payoff-table">
+
+                    <thead>
+                        <tr>
+
+                            <th></th>
+
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+
+                            <th class="selected-column-header">
+                                8
+                            </th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for my_choice, row in p11_rows %}
+
+                            <tr>
+
+                                <th class="
+                                    {% if my_choice == 6 %}
+                                        selected-row-header
+                                    {% endif %}
+                                ">
+                                    {{ my_choice }}
+                                </th>
+
+
+                                {% for cell in row %}
+
+                                    <td class="
+                                        {% if my_choice == 6 %}
+                                            selected-row
+                                        {% endif %}
+
+                                        {% if forloop.counter == 8 %}
+                                            selected-column
+                                        {% endif %}
+
+                                        {% if my_choice == 6 and forloop.counter == 8 %}
+                                            selected-cell
+                                        {% endif %}
+                                    ">
+                                        {{ cell }}
+                                    </td>
+
+                                {% endfor %}
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- ===================================================== -->
+        <!-- EXPLANATION -->
+        <!-- ===================================================== -->
+
+        <div class="explanation-box">
+            {{ explanation }}
+        </div>
+
+
+        {% next_button %}
+
+    </div>
+</div>
+
+{% endblock %}
+
+
+{% block styles %}
+
+<style>
+
+    .big {
+        font-size: large;
+    }
+
+    .big p {
+        line-height: 1.5;
+    }
+
+
+    /* Question */
+
+    .question-box {
+        padding: 18px;
+        margin: 10px 0 20px 0;
+        border: 1px solid #ccc;
+        background-color: white;
+        font-weight: 600;
+    }
+
+
+    /* Answer choices */
+
+    .answer-options {
+        margin: 20px 0 30px 0;
+    }
+
+    .answer-option {
+        display: flex;
+        align-items: center;
+        min-height: 58px;
+        padding: 10px 15px;
+        margin: 8px 0;
+    }
+
+    .option-text {
+        font-size: 1.15em;
+    }
+
+
+    /* Radio circles */
+
+    .radio-circle {
+        width: 24px;
+        height: 24px;
+        margin-right: 15px;
+
+        border: 2px solid #aaa;
+        border-radius: 50%;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+    }
+
+    .selected-radio {
+        border-color: #0d6efd;
+    }
+
+    .radio-dot {
+        width: 12px;
+        height: 12px;
+        background-color: #0d6efd;
+        border-radius: 50%;
+    }
+
+
+    /* Small answer labels */
+
+    .answer-label {
+        margin-left: auto;
+        padding: 4px 9px;
+
+        color: #555;
+        background-color: #eeeeee;
+
+        font-size: 0.85em;
+        font-weight: 700;
+
+        border-radius: 4px;
+    }
+
+    .correct-label {
+        margin-left: auto;
+        padding: 4px 9px;
+
+        color: #157347;
+        background-color: #d1e7dd;
+
+        font-size: 0.85em;
+        font-weight: 700;
+
+        border-radius: 4px;
+    }
+
+
+    /* Correct / incorrect feedback */
+
+    .correct-box {
+        padding: 15px;
+        margin: 20px 0;
+
+        border-left: 5px solid #198754;
+        background-color: #eaf7ef;
+    }
+
+    .correct-box h4 {
+        margin-bottom: 0;
+    }
+
+    .incorrect-box {
+        padding: 15px;
+        margin: 20px 0;
+
+        border-left: 5px solid #b02a37;
+        background-color: #fbeaec;
+    }
+
+    .incorrect-box h4 {
+        margin-bottom: 10px;
+    }
+
+    .incorrect-box p:last-child {
+        margin-bottom: 0;
+    }
+
+
+    /* Earnings table */
+
+    .payoff-table-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        margin: 25px 0;
+        overflow-x: auto;
+    }
+
+    .your-price-label {
+        min-width: 110px;
+        font-weight: 700;
+        text-align: right;
+        line-height: 1.2;
+    }
+
+    .table-wrapper {
+        min-width: max-content;
+    }
+
+    .counterpart-price-label {
+        margin-bottom: 8px;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .payoff-table {
+        border: 2px solid black;
+        border-collapse: collapse;
+        text-align: center;
+        background-color: white;
+    }
+
+    .payoff-table th,
+    .payoff-table td {
+        min-width: 68px;
+        padding: 7px 10px;
+        border: 1px solid #999;
+        white-space: nowrap;
+    }
+
+    .payoff-table th {
+        background-color: #f2f2f2;
+        font-weight: 700;
+    }
+
+
+    /* Highlight row 6 */
+
+    .selected-row {
+        background-color: #edf9f0;
+    }
+
+    .selected-row-header {
+        background-color: #c8f3d2 !important;
+        border: 3px solid #168c3a !important;
+    }
+
+
+    /* Highlight column 8 */
+
+    .selected-column {
+        background-color: #f2f2f2;
+    }
+
+    .selected-column-header {
+        background-color: #e2e2e2 !important;
+        border: 3px solid #777 !important;
+    }
+
+
+    /* Highlight intersection */
+
+    .selected-cell {
+        background-color: #d1e7dd !important;
+        border: 4px solid #198754 !important;
+        font-weight: 800;
+    }
+
+
+    /* Explanation - green */
+
+    .explanation-box {
+        padding: 15px;
+        margin: 20px 0;
+
+        border-left: 5px solid #198754;
+        background-color: #eaf7ef;
+    }
+
+
+    @media (max-width: 900px) {
+
+        .payoff-table-container {
+            display: block;
+        }
+
+        .your-price-label {
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+    }
+
+</style>
+
+{% endblock %}

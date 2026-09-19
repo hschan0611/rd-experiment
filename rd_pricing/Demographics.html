@@ -1,0 +1,177 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Demographic Questionnaire
+{% endblock %}
+
+{% block content %}
+
+<div class="demographics-page">
+
+    <p>
+        Please answer the following questions. Your responses will be used
+        only for research purposes.
+    </p>
+
+    <p>
+        You may choose “Prefer not to answer” where that option is available.
+    </p>
+
+    <div class="question-box">
+        {{ formfield 'age_group' }}
+    </div>
+
+    <div class="question-box">
+        {{ formfield 'gender' }}
+
+        <div
+            id="gender-description-container"
+            class="conditional-question"
+        >
+            {{ formfield 'gender_self_description' }}
+        </div>
+    </div>
+
+    <div class="question-box">
+        {{ formfield 'education' }}
+    </div>
+
+    <div class="question-box">
+        {{ formfield 'student_status' }}
+    </div>
+
+    <div class="question-box">
+        {{ formfield 'field_of_study' }}
+    </div>
+
+    <div class="question-box">
+        {{ formfield 'race_ethnicity' }}
+
+        <div
+            id="race-description-container"
+            class="conditional-question"
+        >
+            {{ formfield 'race_ethnicity_other' }}
+        </div>
+    </div>
+
+    <div class="question-box">
+        {{ formfield 'economics_courses' }}
+    </div>
+
+    <div class="question-box">
+        {{ formfield 'previous_experiment' }}
+    </div>
+
+    <button class="btn btn-primary">
+        Continue to Final Payment
+    </button>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const genderContainer = document.getElementById(
+            "gender-description-container"
+        );
+
+        const raceContainer = document.getElementById(
+            "race-description-container"
+        );
+
+        const genderInputs = document.querySelectorAll(
+            'input[name="gender"]'
+        );
+
+        const raceInputs = document.querySelectorAll(
+            'input[name="race_ethnicity"]'
+        );
+
+        function updateGenderDescription() {
+            const selectedGender = document.querySelector(
+                'input[name="gender"]:checked'
+            );
+
+            if (
+                selectedGender
+                && selectedGender.value === "Self-describe"
+            ) {
+                genderContainer.style.display = "block";
+            } else {
+                genderContainer.style.display = "none";
+            }
+        }
+
+        function updateRaceDescription() {
+            const selectedRace = document.querySelector(
+                'input[name="race_ethnicity"]:checked'
+            );
+
+            if (
+                selectedRace
+                && selectedRace.value === "Another identity"
+            ) {
+                raceContainer.style.display = "block";
+            } else {
+                raceContainer.style.display = "none";
+            }
+        }
+
+        genderInputs.forEach(function (input) {
+            input.addEventListener(
+                "change",
+                updateGenderDescription
+            );
+        });
+
+        raceInputs.forEach(function (input) {
+            input.addEventListener(
+                "change",
+                updateRaceDescription
+            );
+        });
+
+        updateGenderDescription();
+        updateRaceDescription();
+    });
+</script>
+
+{% endblock %}
+
+{% block styles %}
+
+<style>
+    .demographics-page {
+        font-size: large;
+    }
+
+    .demographics-page p {
+        line-height: 1.55;
+    }
+
+    .question-box {
+        margin: 22px 0;
+        padding: 18px;
+        border: 1px solid #cccccc;
+        background-color: #f8f9fa;
+        border-radius: 6px;
+    }
+
+    .conditional-question {
+        display: none;
+        margin-top: 18px;
+        padding-top: 15px;
+        border-top: 1px solid #cccccc;
+    }
+
+    .form-check {
+        margin-bottom: 8px;
+    }
+
+    .btn-primary {
+        margin-top: 15px;
+    }
+</style>
+
+{% endblock %}
