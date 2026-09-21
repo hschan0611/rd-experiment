@@ -12,7 +12,7 @@ SESSION_CONFIGS = [
     dict(
         name='rd_pricing',
         display_name="R&D Pricing Game",
-        num_demo_participants=2,
+        num_demo_participants=12,
         app_sequence=['rd_pricing'],
         real_world_currency_per_point=0.01,
         participation_fee=5.00,
